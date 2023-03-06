@@ -17,27 +17,19 @@
 
   <script type="text/babel">
     const root = document.getElementById("root");
-    function Title() {
+
+    function App() {
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
       return (
-        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-          Hello I'm title
-        </h3>
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={onClick}>Click Me</button>
+        </div>
       );
     }
-    const Button = () => (
-      <button
-        onClick={() => console.log("clicked")}
-        style={{ color: "red", backgroundColor: "blue" }}
-      >
-        click me!
-      </button>
-    );
-    const Container = (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
-    ReactDOM.render(Container, root);
+    ReactDOM.render(<App />, root);
   </script>
 </html>
