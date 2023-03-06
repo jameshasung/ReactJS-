@@ -16,16 +16,17 @@
   ></script>
 
   <script type="text/babel">
-    function Btn({ text, big }) {
+    function Btn({ text, onClick }) {
+      console.log(text, "was rendered");
       return (
         <button
+          onClick={onClick}
           style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             borderRadius: "10px",
             border: "0",
-            fontSize: big ? "20px" : "16px",
           }}
         >
           {text}
@@ -35,11 +36,16 @@
     function ConfirmBtn() {
       return <button>Confirm</button>;
     }
+    const MemorizedBtn = React.memo(Btn);
     function App() {
+      const [value, setValue] = React.useState("Save Change");
+      const changeValue = () => {
+        setValue("Revert Change");
+      };
       return (
         <div>
-          <Btn text="Save Change" big={true} />
-          <Btn text="Continue" />
+          <MemorizedBtn text={value} onClick={changeValue} />
+          <MemorizedBtn text="Continue" />
         </div>
       );
     }
