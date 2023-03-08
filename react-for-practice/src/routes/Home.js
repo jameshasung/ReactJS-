@@ -27,6 +27,7 @@ function Home() {
             <Movie
               key={movie.id}
               // key 는 map을 쓸 때 리액트 랜더링에서 필수적인 요소이다.
+              id={movie.id}
               coverImg={movie.medium_cover_image}
               title={movie.title}
               summary={movie.summary}
